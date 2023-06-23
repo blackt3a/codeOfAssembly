@@ -56,19 +56,19 @@
                                              
          [bits 32]                          
   flush:                                     
-         mov eax,0x0018                      
+         mov eax,0x0018                     ;  0001 1 000  第三个
          mov ds,eax
       
-         mov eax,0x0008                     ;加载数据段(0..4GB)选择子
+         mov eax,0x0008                     ;加载数据段(0..4GB)选择子 1000 第一个
          mov es,eax
          mov fs,eax
          mov gs,eax
       
-         mov eax,0x0020                     ;0000 0000 0010 0000
+         mov eax,0x0020                     ;0000 0000 0010 0 000  第五个
          mov ss,eax
          xor esp,esp                        ;ESP <- 0
       
-         mov dword [es:0x0b8000],0x072e0750 ;字符'P'、'.'及其显示属性
+         mov dword [es:0x0b8000],0x072e0750 ;字符'P'、'.'及其显示属性  直接写入VGA
          mov dword [es:0x0b8004],0x072e074d ;字符'M'、'.'及其显示属性
          mov dword [es:0x0b8008],0x07200720 ;两个空白字符及其显示属性
          mov dword [es:0x0b800c],0x076b076f ;字符'o'、'k'及其显示属性
