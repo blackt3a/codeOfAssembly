@@ -102,8 +102,8 @@
          dec ebx                            ;公用例程段界限 
          add eax,edi                        ;公用例程段基地址
          mov ecx,0x00409800                 ;字节粒度的代码段描述符
-         call make_gdt_descriptor
-         mov [esi+0x28],eax
+         call make_gdt_descriptor           ; 
+         mov [esi+0x28],eax                 ;写入内存
          mov [esi+0x2c],edx
        
          ;建立核心数据段描述符
@@ -114,7 +114,7 @@
          add eax,edi                        ;核心数据段基地址
          mov ecx,0x00409200                 ;字节粒度的数据段描述符 
          call make_gdt_descriptor
-         mov [esi+0x30],eax
+         mov [esi+0x30],eax                 ;写入内存
          mov [esi+0x34],edx 
       
          ;建立核心代码段描述符
